@@ -186,6 +186,8 @@ def get_mifid(gen_matrix, real_matrix, eps = 1e-15):
 #run this to get mifid score
 def get_mifid_from_images(gen_img, real_img, eps = 1e-15):
     v3 = torch.load('inceptionv3.pkl')
+    v3.eval()
+    
     gen_matrix = v3(gen_img).squeeze().numpy()
     real_img = v3(real_img).squeeze().numpy()
     return get_mifid(gen_matrix, real_matrix)
